@@ -307,6 +307,8 @@ def abrir_navegador_e_interagir(url, x, y, browser_index, flow, botSettings):
     # options.add_experimental_option("detach", True)
     browser = MyUDC(options=options, driver_executable_path=chromedriver_path, headless=False, use_subprocess=True)
 
+    # SET WINDOW DISMENSION
+
     proporcaoWidth = botSettings['width'] / 840
     proporcaoHeight = botSettings['height'] / 500
 
@@ -314,10 +316,13 @@ def abrir_navegador_e_interagir(url, x, y, browser_index, flow, botSettings):
     window_height = proporcaoHeight * screen_height
     browser.set_window_size(window_width, window_height)
 
+    # SET WINDOW POSITION
+
     percentHeight = (botSettings['positionY'] / 500) * 100
     percentWidth = (botSettings['positionX'] / 850) * 100
-    py = (percentHeight / 100) * window_height
-    px = (percentWidth / 100) * window_width
+    py = (percentHeight / 100) * screen_height
+    px = (percentWidth / 100) * screen_width
+
     browser.set_window_position(px, py)
 
 
